@@ -1,2 +1,2 @@
-# Cocos
+# DefiMiner
  
