@@ -1,5 +1,5 @@
 import * as cc from 'cc';
-import { Miner } from './Miner';
+import { MaticSlimeContract } from './MaticSlimeContract';
 import { RpcInfo } from './RpcInfo';
 
 
@@ -41,7 +41,7 @@ export class Eth {
         console.log(accounts)
         Eth.account = accounts[0]
         localStorage.setItem("account", accounts[0])
-        Miner.init()
+        MaticSlimeContract.init()
     }
 
     /**

@@ -6,7 +6,7 @@ import {
 } from 'cc';
 import { Eth } from './Plugins/web3/Eth';
 import { Utils } from './Plugins/Utils';
-import { Miner } from './Plugins/web3/Miner';
+import { MaticSlimeContract } from './Plugins/web3/MaticSlimeContract';
 import { RpcInfo } from './Plugins/web3/RpcInfo';
 import { Center } from './Center';
 const {
@@ -71,16 +71,8 @@ export class Manager extends Component {
     }
 
     /**
-     * Miner Func
+     * MaticSlimeContract Func
      */
-
-    async GetDetail() {
-        console.log("Pool :" + await Miner.GetPoolBalance());
-        console.log("Egg :" + await Miner.GetMyEgg());
-        console.log("Miner :" + await Miner.GetMyMiners());
-    }
-
-
 
     Buy() {
         // 入金
@@ -92,8 +84,8 @@ export class Manager extends Component {
         this.MonsterGrowUp()
     }
 
-    SellMiner() {
-        Miner.Pocket()
+    Sell() {
+
     }
 
     /**
