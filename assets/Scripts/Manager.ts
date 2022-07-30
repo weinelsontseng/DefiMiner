@@ -82,8 +82,9 @@ export class Manager extends Component {
 
 
 
-    HireMiner() {
-        Miner.Hire()
+    Buy() {
+        // 入金
+        console.log("Buy Function")
     }
 
     Compound() {
