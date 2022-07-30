@@ -106,5 +106,11 @@ export class MaticSlimeContract {
         return k.toString()
     }
 
+    static async GetCrystalValue() {
+        const k = await MaticSlimeContract.ContractInstance.methods.calculateCrystalSell(MaticSlimeContract.GetMyCrystals()).call({ from: Eth.account });
+        let EtherValue = RpcInfo.web3.utils.fromWei(k, "ether")
+        return EtherValue
+    }
+
 
 }
