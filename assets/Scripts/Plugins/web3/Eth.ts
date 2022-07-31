@@ -68,7 +68,7 @@ export class Eth {
             //Eth.ConnetWallet();
             console.log("Request Account")
         } else {
-            //Eth.ConnetWallet();
+            Eth.ConnetWallet(Eth.AccountHandler);
             console.log("Loading Account :" + Eth.account)
 
         }

@@ -37,9 +37,7 @@ export class Manager extends Component {
         if (!RpcInfo.isConnect) {
             return
         }
-        if (!Utils.isEmpty(Eth.account)) {
-            this.SetConnectLabel(Eth.account.slice(0, 8))
-        }
+
 
 
     }
@@ -70,18 +68,23 @@ export class Manager extends Component {
         Center.instance.SlimeAmount_Label.string = txt
     }
 
-    SetMonsterSprite(txt: string) {
+    SetMonsterSprite(index: any) {
         //史萊姆圖片動畫
-        Center.instance.MonsterSprite.play('slime_idle_lv5')
-        
+        let c = Center.instance.MonsterSprite.clips[index]
+
+        Center.instance.MonsterSprite.defaultClip = c
+        Center.instance.MonsterSprite.play()
+
     }
 
-    SetSlimeAnim(speed: number) {
+    SetSlimeAnim(index: any, speed: number) {
         //史萊姆速度
+        let c = Center.instance.MonsterSprite.clips[index]
+        c.speed = speed
         console.log("speed up")
-        
+
     }
-    
+
 
     /**
      * Connect 
@@ -90,7 +93,14 @@ export class Manager extends Component {
         Center.instance.Connect_Label.string = txt
     }
     async ConnetWallet() {
-        Eth.ConnetWallet();
+        Eth.ConnetWallet(this.AccountHandler);
+    }
+
+    AccountHandler(accounts) {
+        Eth.account = accounts[0]
+        localStorage.setItem("account", accounts[0])
+        this.SetConnectLabel(Eth.account.slice(0, 8))
+        MaticSlimeContract.init()
     }
 
     /**
@@ -115,7 +125,7 @@ export class Manager extends Component {
     Buy() {
         // 入金
         console.log("Buy Function")
-    }    
+    }
 
     Compound() {
         //Miner.Compound()
