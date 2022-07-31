@@ -1,4 +1,4 @@
-import { Miner } from "./Miner.js";
+
 import Web3 from "./web3.min.js";
 
 
