@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Texture2D, SpriteFrame, Label, Sprite, AnimationState, animation, AnimationClip, AnimationComponent, Prefab } from 'cc';
+import { _decorator, Component, Node, Texture2D, SpriteFrame, Label, Sprite, AnimationState, animation, AnimationClip, AnimationComponent, Prefab, EditBox } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Center')
@@ -22,6 +22,8 @@ export class Center extends Component {
     MaticProfit_Label: Label
     @property(Label)
     SlimeAmount_Label: Label
+    @property(EditBox)
+    MaticInput_EditBox: EditBox
 
 
 

@@ -123,19 +123,20 @@ export class Manager extends Component {
     Buy() {
         // 入金        
         console.log("Buy Function")
-        MaticSlimeContract.ContractInstance.Buy()
+        let maticInput = Number(Center.instance.MaticInput_EditBox.string)
+        MaticSlimeContract.Buy("", maticInput)
         Slime.instance.UpdateSlime()
     }
 
     Compound() {
         console.log("Compound Function")
-        MaticSlimeContract.ContractInstance.Compound()
+        MaticSlimeContract.Compound("")
         Slime.instance.UpdateSlime()
     }
 
     Sell() {
         console.log("Sell Function")
-        MaticSlimeContract.ContractInstance.Sell()
+        MaticSlimeContract.Sell()
         Slime.instance.UpdateSlime()
     }
 
