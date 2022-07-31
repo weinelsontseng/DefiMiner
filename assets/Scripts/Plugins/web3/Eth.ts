@@ -62,13 +62,13 @@ export class Eth {
     /**
      * Cookie auto Connect
      */
-    static async CheckCookieForAccount() {
+    static async CheckCookieForAccount(callback) {
         console.log("Check")
         if (localStorage.getItem("account") === null) {
             //Eth.ConnetWallet();
             console.log("Request Account")
         } else {
-            Eth.ConnetWallet(Eth.AccountHandler);
+            Eth.ConnetWallet(callback);
             console.log("Loading Account :" + Eth.account)
 
         }

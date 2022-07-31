@@ -12,6 +12,7 @@ import { Utils } from './Plugins/Utils';
 import { MaticSlimeContract } from './Plugins/web3/MaticSlimeContract';
 import { RpcInfo } from './Plugins/web3/RpcInfo';
 import { Center } from './Center';
+import { Slime } from './Slime';
 const {
     ccclass,
     property
@@ -30,7 +31,7 @@ export class Manager extends Component {
     }
 
     start() {
-        Eth.CheckCookieForAccount()
+        Eth.CheckCookieForAccount(this.AccountHandler)
     }
 
     update(deltaTime: number) {
@@ -43,17 +44,17 @@ export class Manager extends Component {
     }
 
 
-    SetSlimeLabel(txt: string) {
-        //史萊姆等級
-        Center.instance.SlimeLevel_Label.string = txt
+    SetSlimeLevelLabel(level: Number) {
+        // 史萊姆等級
+        Center.instance.SlimeLevel_Label.string = "Lv. " + level.toString();
     }
 
-    SetSlimeExpLabel(txt: string) {
-        //史萊姆經驗
-        Center.instance.SlimeExp_Label.string = txt
+    SetSlimeExpLabel(min: Number, max: Number) {
+        // 史萊姆經驗條 
+        Center.instance.SlimeExp_Label.string = min.toString() + " / " + max.toString();
     }
 
-    SetCrystalEarnLabel(txt: string) {
+    SetCrystalEarnLabel(txt: string) {  // 討論~~
         //Crystal數量
         Center.instance.CrystalEarn_Label.string = txt
     }
@@ -69,7 +70,7 @@ export class Manager extends Component {
     }
 
     SetMonsterSprite(index: any) {
-        //史萊姆圖片動畫
+        
         let c = Center.instance.MonsterSprite.clips[index]
 
         Center.instance.MonsterSprite.defaultClip = c
@@ -77,12 +78,22 @@ export class Manager extends Component {
 
     }
 
-    SetSlimeAnim(index: any, speed: number) {
-        //史萊姆速度
+    SetSlimeAnimAndSpeed(index: any, speed: number) {        
         let c = Center.instance.MonsterSprite.clips[index]
+        //史萊姆圖片動畫
+        Center.instance.MonsterSprite.defaultClip = c
+        Center.instance.MonsterSprite.play()
+
+        //史萊姆速度
         c.speed = speed
         console.log("speed up")
 
+    }
+
+    SetSlimeSize(lv: number) {
+        let c = Center.instance.MonsterSprite.getComponent(UITransform)
+        let len = 300*(lv*0.5+1);
+        c.setContentSize(new Size(len, len))
     }
 
 
@@ -103,38 +114,28 @@ export class Manager extends Component {
         MaticSlimeContract.init()
     }
 
-    /**
-     * Monster GrowUp
-     */
-    MonsterGrowUp() {
-        /*Center.instance.MonsterSprite.spriteFrame = Center.instance.GrowImages[1]
-
-        if (Center.instance.MonsterSprite.spriteFrame == Center.instance.GrowImages[1]) {
-            let vec = Center.instance.MonsterSprite.getComponent(UITransform).contentSize;
-
-
-
-            Center.instance.MonsterSprite.getComponent(UITransform).setContentSize(new Size(vec.x + 10, vec.y + 10))
-        }*/
-    }
 
     /**
      * MaticSlimeContract Func
      */
 
     Buy() {
-        // 入金
+        // 入金        
         console.log("Buy Function")
+        MaticSlimeContract.ContractInstance.Buy()
+        Slime.instance.UpdateSlime()
     }
 
-    Compound() {
-        //Miner.Compound()
+    Compound() {        
         console.log("Compound Function")
-        this.MonsterGrowUp()
+        MaticSlimeContract.ContractInstance.Compound()
+        Slime.instance.UpdateSlime()
     }
 
-    Sell() {
-
+    Sell() {        
+        console.log("Sell Function")
+        MaticSlimeContract.ContractInstance.Sell()
+        Slime.instance.UpdateSlime()
     }
 
     /**

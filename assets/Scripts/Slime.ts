@@ -1,5 +1,8 @@
 import { _decorator, Component, Node } from 'cc';
 import { Center } from './Center';
+import { Manager } from './Manager';
+import { MaticSlimeContract } from './Plugins/web3/MaticSlimeContract';
+import { RpcInfo } from './Plugins/web3/RpcInfo';
 const { ccclass, property } = _decorator;
 
 @ccclass('Slime')
@@ -16,31 +19,37 @@ export class Slime extends Component {
     }
 
     update(deltaTime: number) {
-
+        if (!RpcInfo.isConnect) {
+            return
+        }
+        this.UpdateEarn()
     }
 
-    UpdateEarn() {
-        // TODO : Update Earn
+    async UpdateEarn() {
+        // TODO : Update Earn    
+        Manager.instance.SetMaticProfitLabel(await MaticSlimeContract.GetCrystalValue());
+        Manager.instance.SetSlimeAmountLabel(await MaticSlimeContract.GetMySlimes());
     }
 
 
 
-    UpdateSlime() {
+    async UpdateSlime() {
+        let myExp = Number(await MaticSlimeContract.GetMyExp());
+        let lv = myExp / 120;
+
         // TODO : Update Size
+        Manager.instance.SetSlimeSize(lv);
 
         // TODO : Set Slime Anim Speed
+        Manager.instance.SetSlimeAnimAndSpeed(lv, (1+lv*0.2-0.1));
 
-        // TODO : Set Slime Exp & Level
-    }
-
-
-    // 設定顯示 - 史萊姆 經驗條 
-    SetSlimeExpLabel(min: Number, max: Number) {
-        Center.instance.SlimeExp_Label.string = min.toString() + " / " + max.toString();
-    }
-    // 設定顯示 - 史萊姆 等級
-    SetSlimeLevelLabel(level: Number) {
-        Center.instance.SlimeLevel_Label.string = "Lv. " + level.toString();
+        // TODO : Set Slime Exp & Level        
+        let maxExp = (lv+1)*120;
+        if (maxExp > 600) {
+            maxExp = 600;
+        }
+        Manager.instance.SetSlimeExpLabel(myExp, maxExp);
+        Manager.instance.SetSlimeLevelLabel(lv);
     }
 }
 
