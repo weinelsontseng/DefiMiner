@@ -11,11 +11,11 @@ export class Eth {
     /**
      * 連接錢包
      */
-    static async ConnetWallet() {
+    static async ConnetWallet(callback) {
         // metamsk
         if ((window as any).ethereum) {
 
-            RpcInfo.RequestBNB_Testnet(Eth.AccountHandler);
+            RpcInfo.RequestBNB_Testnet(callback);
 
         } else {
             console.log("No Provider")
@@ -68,7 +68,7 @@ export class Eth {
             //Eth.ConnetWallet();
             console.log("Request Account")
         } else {
-            Eth.ConnetWallet();
+            //Eth.ConnetWallet();
             console.log("Loading Account :" + Eth.account)
 
         }
