@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Texture2D, SpriteFrame, Label, Sprite } from 'cc';
+import { _decorator, Component, Node, Texture2D, SpriteFrame, Label, Sprite, AnimationState, animation, AnimationClip, AnimationComponent, Prefab } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Center')
@@ -25,8 +25,9 @@ export class Center extends Component {
 
 
 
-    @property(Sprite)
-    MonsterSprite: Sprite
+    @property(AnimationComponent)
+    MonsterSprite: AnimationComponent
+
 
     onLoad() {
         Center.instance = this;

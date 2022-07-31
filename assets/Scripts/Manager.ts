@@ -3,6 +3,9 @@ import {
     Component,
     UITransform,
     Size,
+    Sprite,
+    SpriteFrame,
+    AnimationClip,
 } from 'cc';
 import { Eth } from './Plugins/web3/Eth';
 import { Utils } from './Plugins/Utils';
@@ -42,8 +45,43 @@ export class Manager extends Component {
     }
 
 
+    SetSlimeLabel(txt: string) {
+        //史萊姆等級
+        Center.instance.SlimeLevel_Label.string = txt
+    }
 
+    SetSlimeExpLabel(txt: string) {
+        //史萊姆經驗
+        Center.instance.SlimeExp_Label.string = txt
+    }
 
+    SetCrystalEarnLabel(txt: string) {
+        //Crystal數量
+        Center.instance.CrystalEarn_Label.string = txt
+    }
+
+    SetMaticProfitLabel(txt: string) {
+        //Matic賺取數量
+        Center.instance.MaticProfit_Label.string = txt
+    }
+
+    SetSlimeAmountLabel(txt: string) {
+        //史萊姆總數
+        Center.instance.SlimeAmount_Label.string = txt
+    }
+
+    SetMonsterSprite(txt: string) {
+        //史萊姆圖片動畫
+        Center.instance.MonsterSprite.play('slime_idle_lv5')
+        
+    }
+
+    SetSlimeAnim(speed: number) {
+        //史萊姆速度
+        console.log("speed up")
+        
+    }
+    
 
     /**
      * Connect 
@@ -85,14 +123,16 @@ export class Manager extends Component {
     Buy() {
         // 入金
         console.log("Buy Function")
-    }
+    }    
 
     Compound() {
         //Miner.Compound()
+        console.log("Compound Function")
         this.MonsterGrowUp()
     }
 
     SellMiner() {
+        console.log("Sell Function")
         Miner.Pocket()
     }
 
