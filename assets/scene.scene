@@ -160,7 +160,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 596.4556962025316,
+    "_orthoHeight": 540,
     "_near": 0,
     "_far": 2000,
     "_color": {
@@ -16146,13 +16146,25 @@
         "__expectedType__": "cc.AnimationClip"
       },
       {
-        "__uuid__": "c3b899c8-6e9f-46fe-aa13-9eaff6b2c25d",
+        "__uuid__": "62dcc74f-1494-4e53-bd99-31d72c2f17e6",
         "__expectedType__": "cc.AnimationClip"
       },
-      null,
-      null,
-      null,
-      null
+      {
+        "__uuid__": "6f9e3110-93d2-4eb1-aad1-f22cddcb5955",
+        "__expectedType__": "cc.AnimationClip"
+      },
+      {
+        "__uuid__": "ad92a4d4-655b-4953-a741-bf3d9f5d0389",
+        "__expectedType__": "cc.AnimationClip"
+      },
+      {
+        "__uuid__": "82a2c866-7ebc-4631-b4b6-e23aaffe6ba6",
+        "__expectedType__": "cc.AnimationClip"
+      },
+      {
+        "__uuid__": "c3b899c8-6e9f-46fe-aa13-9eaff6b2c25d",
+        "__expectedType__": "cc.AnimationClip"
+      }
     ],
     "_defaultClip": {
       "__uuid__": "d3dadc47-25d7-4617-bc75-2f5c0736eb2b",
