@@ -1,6 +1,7 @@
 import { _decorator, Component, Node } from 'cc';
 import { Center } from './Center';
 import { Manager } from './Manager';
+import { Eth } from './Plugins/web3/Eth';
 import { MaticSlimeContract } from './Plugins/web3/MaticSlimeContract';
 import { RpcInfo } from './Plugins/web3/RpcInfo';
 const { ccclass, property } = _decorator;
@@ -12,6 +13,7 @@ export class Slime extends Component {
 
     onLoad() {
         Slime.instance = this;
+        Eth.EthEvent.on("connected", this.OnConnected)
     }
 
     start() {
@@ -25,10 +27,17 @@ export class Slime extends Component {
         this.UpdateEarn()
     }
 
+    async OnConnected() {
+        Slime.instance.UpdateSlime()
+        console.log("OnConnected")
+    }
+
     async UpdateEarn() {
-        // TODO : Update Earn    
-        Manager.instance.SetMaticProfitLabel(await MaticSlimeContract.GetCrystalValue());
-        Manager.instance.SetSlimeAmountLabel(await MaticSlimeContract.GetMySlimes());
+        // TODO : Update Earn
+        let profit = await MaticSlimeContract.GetCrystalValue()
+        Manager.instance.SetMaticProfitLabel(Number(profit).toFixed(5));
+        let Slimes = await MaticSlimeContract.GetMySlimes() + " Slimes"
+        Manager.instance.SetSlimeAmountLabel(Slimes);
     }
 
 
@@ -41,10 +50,10 @@ export class Slime extends Component {
         Manager.instance.SetSlimeSize(lv);
 
         // TODO : Set Slime Anim Speed
-        Manager.instance.SetSlimeAnimAndSpeed(lv, (1+lv*0.2-0.1));
+        Manager.instance.SetSlimeAnimAndSpeed(lv, (1 + lv * 0.2 - 0.1));
 
         // TODO : Set Slime Exp & Level        
-        let maxExp = (lv+1)*120;
+        let maxExp = (lv + 1) * 120;
         if (maxExp > 600) {
             maxExp = 600;
         }

@@ -1,6 +1,7 @@
 import { Utils } from "../Utils";
 import { Eth } from "./Eth";
 import { RpcInfo } from "./RpcInfo";
+import "./web3.min.js"
 
 export class MaticSlimeContract {
     private static Address: string = "0xD64Ae6B4Ecc3beb0d324D13a3C87f1439B6623B4"

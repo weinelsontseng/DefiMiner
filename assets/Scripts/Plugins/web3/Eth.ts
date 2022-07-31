@@ -1,4 +1,5 @@
 import * as cc from 'cc';
+import { Manager } from '../../Manager';
 import { MaticSlimeContract } from './MaticSlimeContract';
 import { RpcInfo } from './RpcInfo';
 
@@ -7,6 +8,7 @@ import { RpcInfo } from './RpcInfo';
 export class Eth {
 
     static account = ""
+    static EthEvent = new cc.EventTarget()
 
     /**
      * 連接錢包
@@ -15,7 +17,7 @@ export class Eth {
         // metamsk
         if ((window as any).ethereum) {
 
-            RpcInfo.RequestBNB_Testnet(callback);
+            await RpcInfo.RequestBNB_Testnet(callback);
 
         } else {
             console.log("No Provider")
@@ -40,9 +42,14 @@ export class Eth {
     static AccountHandler(accounts) {
         console.log(accounts)
         Eth.account = accounts[0]
+        RpcInfo.isConnect = true;
         localStorage.setItem("account", accounts[0])
+        Manager.SetConnectLabel(Eth.account.slice(0, 8))
         MaticSlimeContract.init()
+        Eth.EthEvent.emit("connected")
     }
+
+
 
     /**
      * Read Ether Balance
@@ -62,13 +69,13 @@ export class Eth {
     /**
      * Cookie auto Connect
      */
-    static async CheckCookieForAccount(callback) {
+    static async CheckCookieForAccount() {
         console.log("Check")
         if (localStorage.getItem("account") === null) {
             //Eth.ConnetWallet();
             console.log("Request Account")
         } else {
-            Eth.ConnetWallet(callback);
+            await Eth.ConnetWallet(Eth.AccountHandler);
             console.log("Loading Account :" + Eth.account)
 
         }

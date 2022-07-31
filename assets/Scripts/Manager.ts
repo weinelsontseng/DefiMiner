@@ -31,7 +31,7 @@ export class Manager extends Component {
     }
 
     start() {
-        Eth.CheckCookieForAccount(this.AccountHandler)
+        Eth.CheckCookieForAccount()
     }
 
     update(deltaTime: number) {
@@ -104,16 +104,10 @@ export class Manager extends Component {
         Center.instance.Connect_Label.string = txt
     }
     async ConnetWallet() {
-        Eth.ConnetWallet(this.AccountHandler);
+        Eth.ConnetWallet(Eth.AccountHandler);
     }
 
-    AccountHandler(accounts) {
-        console.log(accounts)
-        Eth.account = accounts[0]
-        localStorage.setItem("account", accounts[0])
-        Manager.SetConnectLabel(Eth.account.slice(0, 8))
-        MaticSlimeContract.init()
-    }
+
 
 
     /**
@@ -123,20 +117,26 @@ export class Manager extends Component {
     Buy() {
         // 入金        
         console.log("Buy Function")
-        let maticInput = Number(Center.instance.MaticInput_EditBox.string)
-        MaticSlimeContract.Buy("", maticInput)
+        let maticInput = Number(Center.instance.MaticInput_EditBox.textLabel.string)
+        MaticSlimeContract.Buy("", maticInput).then(function () {
+
+        })
         Slime.instance.UpdateSlime()
     }
 
     Compound() {
         console.log("Compound Function")
-        MaticSlimeContract.Compound("")
+        MaticSlimeContract.Compound("").then(function () {
+
+        })
         Slime.instance.UpdateSlime()
     }
 
     Sell() {
         console.log("Sell Function")
-        MaticSlimeContract.Sell()
+        MaticSlimeContract.Sell().then(function () {
+
+        })
         Slime.instance.UpdateSlime()
     }
 

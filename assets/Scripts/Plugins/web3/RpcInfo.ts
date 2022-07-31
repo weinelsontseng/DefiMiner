@@ -33,7 +33,7 @@ export class RpcInfo {
         });
         RpcInfo.web3 = new Web3((window as any).ethereum);
 
-        RpcInfo.isConnect = true;
+
 
         // connect popup
         const accounts = await (window as any).ethereum.request({
@@ -43,7 +43,7 @@ export class RpcInfo {
         });
         //console.log(accounts);
         //this.account = accounts[0];
-        callBack(accounts)
+        await callBack(accounts)
     }
 
     /**
