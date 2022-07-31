@@ -70,7 +70,7 @@ export class Manager extends Component {
     }
 
     SetMonsterSprite(index: any) {
-        
+
         let c = Center.instance.MonsterSprite.clips[index]
 
         Center.instance.MonsterSprite.defaultClip = c
@@ -78,7 +78,7 @@ export class Manager extends Component {
 
     }
 
-    SetSlimeAnimAndSpeed(index: any, speed: number) {        
+    SetSlimeAnimAndSpeed(index: any, speed: number) {
         let c = Center.instance.MonsterSprite.clips[index]
         //史萊姆圖片動畫
         Center.instance.MonsterSprite.defaultClip = c
@@ -92,7 +92,7 @@ export class Manager extends Component {
 
     SetSlimeSize(lv: number) {
         let c = Center.instance.MonsterSprite.getComponent(UITransform)
-        let len = 300*(lv*0.5+1);
+        let len = 300 * (lv * 0.5 + 1);
         c.setContentSize(new Size(len, len))
     }
 
@@ -100,7 +100,7 @@ export class Manager extends Component {
     /**
      * Connect 
     */
-    SetConnectLabel(txt: string) {
+    static SetConnectLabel(txt: string) {
         Center.instance.Connect_Label.string = txt
     }
     async ConnetWallet() {
@@ -108,9 +108,10 @@ export class Manager extends Component {
     }
 
     AccountHandler(accounts) {
+        console.log(accounts)
         Eth.account = accounts[0]
         localStorage.setItem("account", accounts[0])
-        this.SetConnectLabel(Eth.account.slice(0, 8))
+        Manager.SetConnectLabel(Eth.account.slice(0, 8))
         MaticSlimeContract.init()
     }
 
@@ -126,13 +127,13 @@ export class Manager extends Component {
         Slime.instance.UpdateSlime()
     }
 
-    Compound() {        
+    Compound() {
         console.log("Compound Function")
         MaticSlimeContract.ContractInstance.Compound()
         Slime.instance.UpdateSlime()
     }
 
-    Sell() {        
+    Sell() {
         console.log("Sell Function")
         MaticSlimeContract.ContractInstance.Sell()
         Slime.instance.UpdateSlime()
