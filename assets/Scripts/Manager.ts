@@ -148,6 +148,11 @@ export class Manager extends Component {
         Utils.OpenURL("/Whitepaper")
     }
 
+    Reffer() {
+        console.log("Refferal Function")
+        
+    }
+
 
 
 
