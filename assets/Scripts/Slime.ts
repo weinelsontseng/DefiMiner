@@ -14,6 +14,7 @@ export class Slime extends Component {
     onLoad() {
         Slime.instance = this;
         Eth.EthEvent.on("connected", this.OnConnected)
+        Eth.EthEvent.on("updateSlime", Slime.instance.UpdateSlime)
     }
 
     start() {
@@ -32,10 +33,18 @@ export class Slime extends Component {
         console.log("OnConnected")
     }
 
+
+
     async UpdateEarn() {
+        //console.log("Update Earn")
         // TODO : Update Earn
         let profit = await MaticSlimeContract.GetCrystalValue()
         Manager.instance.SetMaticProfitLabel(Number(profit).toFixed(5));
+
+        let seconds = await MaticSlimeContract.GetSecondsPassed()
+        Manager.instance.SetMaticProfitBar(seconds)
+
+
         let Slimes = await MaticSlimeContract.GetMySlimes() + " Slimes"
         Manager.instance.SetSlimeAmountLabel(Slimes);
     }
@@ -44,7 +53,8 @@ export class Slime extends Component {
 
     async UpdateSlime() {
         let myExp = Number(await MaticSlimeContract.GetMyExp());
-        let lv = myExp / 120;
+
+        let lv = Math.floor(myExp / 120)
 
         // TODO : Update Size
         Manager.instance.SetSlimeSize(lv);

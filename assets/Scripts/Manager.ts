@@ -25,12 +25,14 @@ const {
 @ccclass('Manager')
 export class Manager extends Component {
     static instance: Manager
+    Ref: string
 
     onLoad() {
         Manager.instance = this;
     }
 
     start() {
+        this.SetRef()
         Eth.CheckCookieForAccount()
     }
 
@@ -38,9 +40,31 @@ export class Manager extends Component {
         if (!RpcInfo.isConnect) {
             return
         }
+    }
 
+    SetRef() {
+        let params = new URLSearchParams(location.search)
+        Manager.instance.Ref = params.get("ref")
+        console.log("Ref :", Manager.instance.Ref)
+    }
 
+    SetBGM() {
+        let volume = Center.instance.BGM_AudioSource.volume;
+        if (volume == 0) {
+            Center.instance.BGM_AudioSource.volume = 1;
+            Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOn
+        } else {
+            Center.instance.BGM_AudioSource.volume = 0;
+            Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOff
+        }
 
+    }
+
+    SetMaticProfitBar(secondsPass: number) {
+        const OneDay = 86400;
+        let progress = (secondsPass / OneDay)
+        //console.log(progress)
+        Center.instance.Profit_ProgressBar.progress = progress
     }
 
 
@@ -80,13 +104,19 @@ export class Manager extends Component {
 
     SetSlimeAnimAndSpeed(index: any, speed: number) {
         let c = Center.instance.MonsterSprite.clips[index]
+
+        console.log(index)
+        console.log(speed)
+        console.log(c)
+        //史萊姆速度
+        c.speed = speed
+        console.log("speed up")
+
         //史萊姆圖片動畫
         Center.instance.MonsterSprite.defaultClip = c
         Center.instance.MonsterSprite.play()
 
-        //史萊姆速度
-        c.speed = speed
-        console.log("speed up")
+
 
     }
 
@@ -94,6 +124,10 @@ export class Manager extends Component {
         let c = Center.instance.MonsterSprite.getComponent(UITransform)
         let len = 300 * (lv * 0.5 + 1);
         c.setContentSize(new Size(len, len))
+    }
+
+    PlayButtonSound() {
+        Center.instance.Sound_AudioSource.play()
     }
 
 
@@ -105,6 +139,8 @@ export class Manager extends Component {
     }
     async ConnetWallet() {
         Eth.ConnetWallet(Eth.AccountHandler);
+        this.PlayButtonSound()
+
     }
 
 
@@ -118,18 +154,20 @@ export class Manager extends Component {
         // 入金        
         console.log("Buy Function")
         let maticInput = Number(Center.instance.MaticInput_EditBox.textLabel.string)
-        MaticSlimeContract.Buy("", maticInput).then(function () {
+        MaticSlimeContract.Buy(Manager.instance.Ref, maticInput).then(function () {
 
         })
-        Slime.instance.UpdateSlime()
+        this.PlayButtonSound()
+        //Slime.instance.UpdateSlime()
     }
 
     Compound() {
         console.log("Compound Function")
-        MaticSlimeContract.Compound("").then(function () {
+        MaticSlimeContract.Compound(Manager.instance.Ref).then(function () {
 
         })
-        Slime.instance.UpdateSlime()
+        this.PlayButtonSound()
+        //Slime.instance.UpdateSlime()
     }
 
     Sell() {
@@ -137,7 +175,8 @@ export class Manager extends Component {
         MaticSlimeContract.Sell().then(function () {
 
         })
-        Slime.instance.UpdateSlime()
+        this.PlayButtonSound()
+        //Slime.instance.UpdateSlime()
     }
 
     /**
@@ -145,12 +184,25 @@ export class Manager extends Component {
      */
 
     OpenWhitePaper() {
+        this.PlayButtonSound()
         Utils.OpenURL("/Whitepaper")
+
     }
 
     Reffer() {
         console.log("Refferal Function")
-        
+
+        let RefUrl = document.URL + "?ref=" + Eth.account
+        navigator.clipboard.writeText(RefUrl)
+            .then(() => {
+                console.log("Text copied to clipboard...")
+            })
+            .catch(err => {
+                console.log('Something went wrong', err);
+            })
+
+        this.PlayButtonSound()
+
     }
 
 
