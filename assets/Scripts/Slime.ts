@@ -10,6 +10,7 @@ const { ccclass, property } = _decorator;
 export class Slime extends Component {
     static instance: Slime
     Crystal: string
+    OneDay = 86400;
 
     onLoad() {
         Slime.instance = this;
@@ -47,6 +48,11 @@ export class Slime extends Component {
 
         let Slimes = await MaticSlimeContract.GetMySlimes() + " Slimes"
         Manager.instance.SetSlimeAmountLabel(Slimes);
+
+
+        let OneDayProfit = Number(await MaticSlimeContract.GetMySlimes()) * Slime.instance.OneDay
+
+
     }
 
 

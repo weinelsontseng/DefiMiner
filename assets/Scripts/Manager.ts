@@ -6,6 +6,7 @@ import {
     Sprite,
     SpriteFrame,
     AnimationClip,
+    ButtonComponent,
 } from 'cc';
 import { Eth } from './Plugins/web3/Eth';
 import { Utils } from './Plugins/Utils';
@@ -51,11 +52,15 @@ export class Manager extends Component {
     SetBGM() {
         let volume = Center.instance.BGM_AudioSource.volume;
         if (volume == 0) {
+            //Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOn
+            Center.instance.BGM_Sprite.getComponent(ButtonComponent).normalSprite = Center.instance.BGM_SpriteFrameOn
             Center.instance.BGM_AudioSource.volume = 1;
-            Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOn
+
         } else {
+            //Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOff
+            Center.instance.BGM_Sprite.getComponent(ButtonComponent).normalSprite = Center.instance.BGM_SpriteFrameOff
             Center.instance.BGM_AudioSource.volume = 0;
-            Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOff
+
         }
 
     }
@@ -78,9 +83,10 @@ export class Manager extends Component {
         Center.instance.SlimeExp_Label.string = min.toString() + " / " + max.toString();
     }
 
-    SetCrystalEarnLabel(txt: string) {  // 討論~~
+    //Daily Yield Profit
+    SetDailyYieldLabel(txt: string) {  // 討論~~
         //Crystal數量
-        Center.instance.CrystalEarn_Label.string = txt
+        Center.instance.DailyYield_Label.string = txt
     }
 
     SetMaticProfitLabel(txt: string) {

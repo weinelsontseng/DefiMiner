@@ -17,7 +17,7 @@ export class Center extends Component {
     @property(Label)
     SlimeExp_Label: Label
     @property(Label)
-    CrystalEarn_Label: Label
+    DailyYield_Label: Label
     @property(Label)
     MaticProfit_Label: Label
     @property(Label)
