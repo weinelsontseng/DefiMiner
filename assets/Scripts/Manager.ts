@@ -7,6 +7,7 @@ import {
     SpriteFrame,
     AnimationClip,
     ButtonComponent,
+    setDisplayStats,
 } from 'cc';
 import { Eth } from './Plugins/web3/Eth';
 import { Utils } from './Plugins/Utils';
@@ -30,6 +31,7 @@ export class Manager extends Component {
 
     onLoad() {
         Manager.instance = this;
+        setDisplayStats(false);
     }
 
     start() {
@@ -52,13 +54,13 @@ export class Manager extends Component {
     SetBGM() {
         let volume = Center.instance.BGM_AudioSource.volume;
         if (volume == 0) {
-            //Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOn
-            Center.instance.BGM_Sprite.getComponent(ButtonComponent).normalSprite = Center.instance.BGM_SpriteFrameOn
+            Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOn
+            // Center.instance.BGM_Sprite.getComponent(ButtonComponent).normalSprite = Center.instance.BGM_SpriteFrameOn
             Center.instance.BGM_AudioSource.volume = 1;
 
         } else {
-            //Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOff
-            Center.instance.BGM_Sprite.getComponent(ButtonComponent).normalSprite = Center.instance.BGM_SpriteFrameOff
+            Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOff
+            // Center.instance.BGM_Sprite.getComponent(ButtonComponent).normalSprite = Center.instance.BGM_SpriteFrameOff
             Center.instance.BGM_AudioSource.volume = 0;
 
         }
