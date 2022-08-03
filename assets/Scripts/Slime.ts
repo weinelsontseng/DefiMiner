@@ -11,6 +11,7 @@ export class Slime extends Component {
     static instance: Slime
     Crystal: string
     OneDay = 86400;
+    PlayerInfo: any;
 
     onLoad() {
         Slime.instance = this;
@@ -50,7 +51,8 @@ export class Slime extends Component {
         Manager.instance.SetSlimeAmountLabel(Slimes);
 
 
-        let OneDayProfit = Number(await MaticSlimeContract.GetMySlimes()) * Slime.instance.OneDay
+
+
 
 
     }
@@ -75,6 +77,23 @@ export class Slime extends Component {
         }
         Manager.instance.SetSlimeExpLabel(myExp, maxExp);
         Manager.instance.SetSlimeLevelLabel(lv);
+
+
+        let OneDayProfit = Number(await MaticSlimeContract.GetMySlimes()) * Slime.instance.OneDay
+        OneDayProfit = await RpcInfo.web3.utils.fromWei(OneDayProfit.toString(), "ether")
+
+        Slime.instance.PlayerInfo = await MaticSlimeContract.GetPlayerInfo()
+        console.log(Slime.instance.PlayerInfo)
+
+        let principal = Number(Slime.instance.PlayerInfo.Principal)
+        principal = await RpcInfo.web3.utils.fromWei(principal.toString(), "ether")
+
+
+        let dailyYield = (Number(OneDayProfit) / Number(principal)) * 100
+        console.log(dailyYield)
+
+        Manager.instance.SetDailyYieldLabel(dailyYield.toFixed(2).toString() + "%")
+
     }
 }
 

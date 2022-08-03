@@ -126,6 +126,15 @@ export class MaticSlimeContract {
     }
 
 
+    static async GetPlayerInfo() {
+        const k = await MaticSlimeContract.ContractInstance.methods.player(Eth.account).call({ from: Eth.account });
+        //console.log(k)
+        //let j = JSON.parse(k)
+
+        return k;
+    }
+
+
 
 
 }
