@@ -28,9 +28,11 @@ export class Eth {
         });
 
         (window as any).ethereum.on("accountsChanged", function () {
+            localStorage.removeItem("account")
             location.reload();
         });
         (window as any).ethereum.on('chainChanged', function (_chainId) {
+            localStorage.removeItem("account")
             location.reload();
             console.log(_chainId);
         });

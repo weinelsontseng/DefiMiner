@@ -21144,7 +21144,7 @@
     },
     "component": "",
     "_componentId": "7c79ejvjZpFtpp0NiuNEZQf",
-    "handler": "SellMiner",
+    "handler": "Sell",
     "customEventData": ""
   },
   {

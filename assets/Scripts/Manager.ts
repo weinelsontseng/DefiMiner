@@ -32,6 +32,8 @@ export class Manager extends Component {
     onLoad() {
         Manager.instance = this;
         setDisplayStats(false);
+
+        Eth.EthEvent.on("connected", this.OnConnected)
     }
 
     start() {
@@ -43,6 +45,10 @@ export class Manager extends Component {
         if (!RpcInfo.isConnect) {
             return
         }
+    }
+
+    OnConnected() {
+
     }
 
     SetRef() {

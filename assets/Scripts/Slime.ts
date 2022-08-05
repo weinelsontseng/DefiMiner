@@ -10,8 +10,10 @@ const { ccclass, property } = _decorator;
 export class Slime extends Component {
     static instance: Slime
     Crystal: string
-    OneDay = 86400;
+
     PlayerInfo: any;
+
+
 
     onLoad() {
         Slime.instance = this;
@@ -40,8 +42,9 @@ export class Slime extends Component {
     async UpdateEarn() {
         //console.log("Update Earn")
         // TODO : Update Earn
-        let profit = await MaticSlimeContract.GetCrystalValue()
-        Manager.instance.SetMaticProfitLabel(Number(profit).toFixed(5));
+        let OneDayProfit = Number(await MaticSlimeContract.GetCrystalValue())
+        Manager.instance.SetMaticProfitLabel(OneDayProfit.toPrecision(5));
+        //console.log(Slime.instance.OneDayProfit)
 
         let seconds = await MaticSlimeContract.GetSecondsPassed()
         Manager.instance.SetMaticProfitBar(seconds)
@@ -49,10 +52,6 @@ export class Slime extends Component {
 
         let Slimes = await MaticSlimeContract.GetMySlimes() + " Slimes"
         Manager.instance.SetSlimeAmountLabel(Slimes);
-
-
-
-
 
 
     }
@@ -79,21 +78,34 @@ export class Slime extends Component {
         Manager.instance.SetSlimeLevelLabel(lv);
 
 
-        let OneDayProfit = Number(await MaticSlimeContract.GetMySlimes()) * Slime.instance.OneDay
-        OneDayProfit = await RpcInfo.web3.utils.fromWei(OneDayProfit.toString(), "ether")
+        await Slime.instance.GetDailyYield()
 
+
+
+    }
+
+
+    // 日利率
+    async GetDailyYield() {
         Slime.instance.PlayerInfo = await MaticSlimeContract.GetPlayerInfo()
         console.log(Slime.instance.PlayerInfo)
 
         let principal = Number(Slime.instance.PlayerInfo.Principal)
         principal = await RpcInfo.web3.utils.fromWei(principal.toString(), "ether")
+        //console.log(principal)
 
+        let OneDayProfit = await MaticSlimeContract.GetOneDayMaxCrystalValue()
 
-        let dailyYield = (Number(OneDayProfit) / Number(principal)) * 100
-        console.log(dailyYield)
+        //console.log("Profit / Principal :", OneDayProfit, principal)
+        let dailyYield = 0;
 
-        Manager.instance.SetDailyYieldLabel(dailyYield.toFixed(2).toString() + "%")
+        if (Number(principal) == 0) {
 
+        } else {
+            dailyYield = ((OneDayProfit) / Number(principal) * 100)
+            console.log(dailyYield)
+        }
+        Manager.instance.SetDailyYieldLabel(dailyYield.toPrecision(2) + "%")
     }
 }
 

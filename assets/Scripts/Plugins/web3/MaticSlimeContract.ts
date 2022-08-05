@@ -87,8 +87,28 @@ export class MaticSlimeContract {
 
     static async GetCrystalValue() {
         const myCrystals = await MaticSlimeContract.ContractInstance.methods.GetMyCrystals().call({ from: Eth.account });
+
+        if (myCrystals == 0) {
+            return 0
+        }
+
         const k = await MaticSlimeContract.ContractInstance.methods.calculateCrystalSell(myCrystals).call({ from: Eth.account });
         //console.log(k)
+        let EtherValue = await RpcInfo.web3.utils.fromWei(k, "ether")
+        return EtherValue
+    }
+
+    static async GetOneDayMaxCrystalValue() {
+        const OneDay = 86400;
+        const baseSlime = await MaticSlimeContract.GetMySlimes()
+
+        const MaxCrystal = Number(baseSlime) * OneDay
+
+        if (MaxCrystal == 0) {
+            return 0
+        }
+
+        const k = await MaticSlimeContract.ContractInstance.methods.calculateCrystalSell(MaxCrystal).call({ from: Eth.account });
         let EtherValue = await RpcInfo.web3.utils.fromWei(k, "ether")
         return EtherValue
     }
