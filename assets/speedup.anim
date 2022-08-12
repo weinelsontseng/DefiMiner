@@ -67,15 +67,13 @@
         "__type__": "cc.RealKeyframeValue",
         "interpolationMode": 0,
         "tangentWeightMode": 0,
-        "value": -154.18299865722656,
+        "value": -181.41099548339844,
         "rightTangent": 0,
         "rightTangentWeight": 1,
         "leftTangent": 0,
         "leftTangentWeight": 1,
         "easingMethod": 0,
-        "__editorExtras__": {
-          "tangentMode": 0
-        }
+        "__editorExtras__": {}
       }
     ],
     "preExtrapolation": 1,
@@ -97,15 +95,13 @@
         "__type__": "cc.RealKeyframeValue",
         "interpolationMode": 0,
         "tangentWeightMode": 0,
-        "value": -229.18499755859375,
+        "value": -36.7760009765625,
         "rightTangent": 0,
         "rightTangentWeight": 1,
         "leftTangent": 0,
         "leftTangentWeight": 1,
         "easingMethod": 0,
-        "__editorExtras__": {
-          "tangentMode": 0
-        }
+        "__editorExtras__": {}
       }
     ],
     "preExtrapolation": 1,
@@ -133,9 +129,7 @@
         "leftTangent": 0,
         "leftTangentWeight": 1,
         "easingMethod": 0,
-        "__editorExtras__": {
-          "tangentMode": 0
-        }
+        "__editorExtras__": {}
       }
     ],
     "preExtrapolation": 1,
@@ -194,36 +188,32 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      0.8166666626930237
+      0.8166666666666667
     ],
     "_values": [
       {
         "__type__": "cc.RealKeyframeValue",
         "interpolationMode": 0,
         "tangentWeightMode": 0,
-        "value": 0.800000011920929,
+        "value": 0.6000000238418579,
         "rightTangent": 0,
         "rightTangentWeight": 1,
         "leftTangent": 0,
         "leftTangentWeight": 1,
         "easingMethod": 0,
-        "__editorExtras__": {
-          "tangentMode": 0
-        }
+        "__editorExtras__": {}
       },
       {
         "__type__": "cc.RealKeyframeValue",
         "interpolationMode": 0,
         "tangentWeightMode": 0,
-        "value": 0.8500000238418579,
+        "value": 0.65,
         "rightTangent": 0,
         "rightTangentWeight": 1,
         "leftTangent": 0,
         "leftTangentWeight": 1,
         "easingMethod": 0,
-        "__editorExtras__": {
-          "tangentMode": 0
-        }
+        "__editorExtras__": {}
       }
     ],
     "preExtrapolation": 1,
@@ -239,36 +229,32 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      0.8166666626930237
+      0.8166666666666667
     ],
     "_values": [
       {
         "__type__": "cc.RealKeyframeValue",
         "interpolationMode": 0,
         "tangentWeightMode": 0,
-        "value": 0.800000011920929,
+        "value": 0.6000000238418579,
         "rightTangent": 0,
         "rightTangentWeight": 1,
         "leftTangent": 0,
         "leftTangentWeight": 1,
         "easingMethod": 0,
-        "__editorExtras__": {
-          "tangentMode": 0
-        }
+        "__editorExtras__": {}
       },
       {
         "__type__": "cc.RealKeyframeValue",
         "interpolationMode": 0,
         "tangentWeightMode": 0,
-        "value": 0.8500000238418579,
+        "value": 0.65,
         "rightTangent": 0,
         "rightTangentWeight": 1,
         "leftTangent": 0,
         "leftTangentWeight": 1,
         "easingMethod": 0,
-        "__editorExtras__": {
-          "tangentMode": 0
-        }
+        "__editorExtras__": {}
       }
     ],
     "preExtrapolation": 1,
@@ -284,7 +270,7 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      0.8166666626930237
+      0.8166666666666667
     ],
     "_values": [
       {
@@ -297,9 +283,7 @@
         "leftTangent": 0,
         "leftTangentWeight": 1,
         "easingMethod": 0,
-        "__editorExtras__": {
-          "tangentMode": 0
-        }
+        "__editorExtras__": {}
       },
       {
         "__type__": "cc.RealKeyframeValue",
@@ -311,9 +295,7 @@
         "leftTangent": 0,
         "leftTangentWeight": 1,
         "easingMethod": 0,
-        "__editorExtras__": {
-          "tangentMode": 0
-        }
+        "__editorExtras__": {}
       }
     ],
     "preExtrapolation": 1,
