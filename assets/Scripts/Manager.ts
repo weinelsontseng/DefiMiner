@@ -136,7 +136,7 @@ export class Manager extends Component {
 
     SetSlimeSize(lv: number) {
         let c = Center.instance.MonsterSprite.getComponent(UITransform)
-        let len = 300 * (lv * 0.5 + 1);
+        let len = 150 * (lv * 0.5 + 1);
         console.log(len)
         c.setContentSize(new Size(len, len))
     }
