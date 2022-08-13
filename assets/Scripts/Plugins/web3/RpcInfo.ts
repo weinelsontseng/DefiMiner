@@ -27,9 +27,16 @@ export class RpcInfo {
                 blockExplorerUrls: ['https://testnet.bscscan.com'],
 
             }]
-        }).then(() => {
+        }).then(async () => {
             // connect popup
-            RpcInfo.RequestAccounts(callBack)
+            RpcInfo.web3 = new Web3((window as any).ethereum);
+            let chainId = await RpcInfo.web3.eth.getChainId()
+            if (chainId != 97) {
+                console.log("Chain Error")
+            } else {
+                RpcInfo.RequestAccounts(callBack)
+            }
+
         })
             .catch((error) => {
                 console.log(error);
@@ -49,7 +56,7 @@ export class RpcInfo {
             method: 'eth_requestAccounts',
         })
             .then((accounts) => {
-                RpcInfo.web3 = new Web3((window as any).ethereum);
+
                 callBack(accounts)
             })
             .catch((error) => {
@@ -77,9 +84,15 @@ export class RpcInfo {
                 blockExplorerUrls: ['https://bscscan.com/'],
 
             }]
-        }).then(() => {
+        }).then(async () => {
             // connect popup
-            RpcInfo.RequestAccounts(callBack)
+            RpcInfo.web3 = new Web3((window as any).ethereum);
+            let chainId = await RpcInfo.web3.eth.getChainId()
+            if (chainId != 56) {
+                console.log("Chain Error")
+            } else {
+                RpcInfo.RequestAccounts(callBack)
+            }
         })
 
             .catch((error) => {

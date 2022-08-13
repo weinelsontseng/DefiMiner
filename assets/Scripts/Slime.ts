@@ -26,7 +26,7 @@ export class Slime extends Component {
         Manager.instance.InitSlimeSize();
         Manager.instance.InitSlimeExpLabel();
 
-        Slime.instance.UpdateInterval = setInterval(Slime.instance.UpdateEarn, 2000)
+
     }
 
     update(deltaTime: number) {
@@ -37,6 +37,7 @@ export class Slime extends Component {
     async OnConnected() {
         Slime.instance.UpdateSlime()
         console.log("OnConnected")
+        Slime.instance.UpdateInterval = setInterval(Slime.instance.UpdateEarn, 2000)
     }
 
 
