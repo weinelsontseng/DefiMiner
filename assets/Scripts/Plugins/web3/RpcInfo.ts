@@ -1,4 +1,3 @@
-
 import Web3 from "./web3.min.js";
 
 
@@ -28,22 +27,34 @@ export class RpcInfo {
                 blockExplorerUrls: ['https://testnet.bscscan.com'],
 
             }]
-        }).catch((error) => {
-            console.log(error);
-        });
-        RpcInfo.web3 = new Web3((window as any).ethereum);
+        }).then(() => {
+            // connect popup
+            RpcInfo.RequestAccounts(callBack)
+        })
+            .catch((error) => {
+                console.log(error);
+            });
 
 
 
-        // connect popup
-        const accounts = await (window as any).ethereum.request({
-            method: 'eth_requestAccounts',
-        }).catch((error) => {
-            console.log(error);
-        });
+
+
         //console.log(accounts);
         //this.account = accounts[0];
-        await callBack(accounts)
+
+    }
+
+    static RequestAccounts(callBack) {
+        (window as any).ethereum.request({
+            method: 'eth_requestAccounts',
+        })
+            .then((accounts) => {
+                RpcInfo.web3 = new Web3((window as any).ethereum);
+                callBack(accounts)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     /**
@@ -66,21 +77,16 @@ export class RpcInfo {
                 blockExplorerUrls: ['https://bscscan.com/'],
 
             }]
-        }).catch((error) => {
-            console.log(error);
-        });
-        RpcInfo.web3 = new Web3((window as any).ethereum);
-        RpcInfo.isConnect = true;
-        // connect popup
-        const accounts = await (window as any).ethereum.request({
-            method: 'eth_requestAccounts',
-        }).catch((error) => {
-            console.log(error);
-        });
-        //console.log(accounts);
-        //this.account = accounts[0];\
+        }).then(() => {
+            // connect popup
+            RpcInfo.RequestAccounts(callBack)
+        })
 
-        callBack(accounts)
+            .catch((error) => {
+                console.log(error);
+            });
+
+
     }
 
 }

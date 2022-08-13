@@ -137,8 +137,20 @@ export class Manager extends Component {
     SetSlimeSize(lv: number) {
         let c = Center.instance.MonsterSprite.getComponent(UITransform)
         let len = 150 * (lv * 0.5 + 1);
-        console.log(len)
+
         c.setContentSize(new Size(len, len))
+    }
+
+    InitSlimeSize() {
+        let c = Center.instance.MonsterSprite.getComponent(UITransform)
+        c.setContentSize(new Size(0, 0))
+    }
+
+    InitSlimeExpLabel() {
+        // 史萊姆等級
+        Center.instance.SlimeLevel_Label.string = "Lv. 0";
+        // 史萊姆經驗條 
+        Center.instance.SlimeExp_Label.string = "0 / 120";
     }
 
     PlayButtonSound() {

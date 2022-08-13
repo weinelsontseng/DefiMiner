@@ -44,6 +44,7 @@ export class Eth {
     static AccountHandler(accounts) {
         console.log(accounts)
         Eth.account = accounts[0]
+
         RpcInfo.isConnect = true;
         localStorage.setItem("account", accounts[0])
         Manager.SetConnectLabel(Eth.account.slice(0, 8))

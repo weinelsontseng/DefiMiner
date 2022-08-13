@@ -11,8 +11,9 @@ export class Slime extends Component {
     static instance: Slime
     Crystal: string
 
-    PlayerInfo: any;
+    PlayerInfo: any
 
+    UpdateInterval: any
 
 
     onLoad() {
@@ -22,14 +23,15 @@ export class Slime extends Component {
     }
 
     start() {
+        Manager.instance.InitSlimeSize();
+        Manager.instance.InitSlimeExpLabel();
 
+        Slime.instance.UpdateInterval = setInterval(Slime.instance.UpdateEarn, 2000)
     }
 
     update(deltaTime: number) {
-        if (!RpcInfo.isConnect) {
-            return
-        }
-        this.UpdateEarn()
+
+
     }
 
     async OnConnected() {
@@ -42,6 +44,10 @@ export class Slime extends Component {
     async UpdateEarn() {
         //console.log("Update Earn")
         // TODO : Update Earn
+        if (!RpcInfo.isConnect) {
+            console.log("Disconnected")
+            return
+        }
         let OneDayProfit = Number(await MaticSlimeContract.GetCrystalValue())
         Manager.instance.SetMaticProfitLabel(OneDayProfit.toPrecision(5));
         //console.log(Slime.instance.OneDayProfit)
@@ -59,6 +65,7 @@ export class Slime extends Component {
 
 
     async UpdateSlime() {
+
         let myExp = Number(await MaticSlimeContract.GetMyExp());
 
         let lv = Math.floor(myExp / 120)
