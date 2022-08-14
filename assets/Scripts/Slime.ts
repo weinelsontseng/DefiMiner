@@ -102,8 +102,8 @@ export class Slime extends Component {
         Slime.instance.PlayerInfo = await MaticSlimeContract.GetPlayerInfo()
         console.log(Slime.instance.PlayerInfo)
 
-        let principal = Number(Slime.instance.PlayerInfo.Principal)
-        principal = await RpcInfo.web3.utils.fromWei(principal.toString(), "ether")
+        let InvestValue = Number(Slime.instance.PlayerInfo.InvestValue)
+        InvestValue = await RpcInfo.web3.utils.fromWei(InvestValue.toString(), "ether")
         //console.log(principal)
 
         let OneDayProfit = await MaticSlimeContract.GetOneDayMaxCrystalValue()
@@ -111,10 +111,10 @@ export class Slime extends Component {
         //console.log("Profit / Principal :", OneDayProfit, principal)
         let dailyYield = 0;
 
-        if (Number(principal) == 0) {
+        if (Number(InvestValue) == 0) {
 
         } else {
-            dailyYield = ((OneDayProfit) / Number(principal) * 100)
+            dailyYield = ((OneDayProfit) / Number(InvestValue) * 100)
             console.log(dailyYield)
         }
         Manager.instance.SetDailyYieldLabel(dailyYield.toPrecision(2) + "%")
