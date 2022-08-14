@@ -41,14 +41,14 @@ export class Eth {
      * 連接錢包的Callback
      * @param accounts 
      */
-    static AccountHandler(accounts) {
+    static async AccountHandler(accounts) {
         console.log(accounts)
         Eth.account = accounts[0]
 
         RpcInfo.isConnect = true;
         localStorage.setItem("account", accounts[0])
         Manager.SetConnectLabel(Eth.account.slice(0, 8))
-        MaticSlimeContract.init()
+        await MaticSlimeContract.init()
         Eth.EthEvent.emit("connected")
     }
 
