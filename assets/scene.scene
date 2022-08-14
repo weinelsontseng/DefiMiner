@@ -166,7 +166,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 375,
+    "_orthoHeight": 375.24889543446244,
     "_near": 0,
     "_far": 5000,
     "_color": {
@@ -5628,7 +5628,7 @@
     "_cameraComponent": {
       "__id__": 4
     },
-    "_alignCanvasWithScreen": true,
+    "_alignCanvasWithScreen": false,
     "_id": "12O/ljcVlEqLmVm3U2gEOQ"
   },
   {
@@ -5644,7 +5644,7 @@
     "_target": null,
     "_left": 0,
     "_right": 1.1368683772161603e-13,
-    "_top": 0,
+    "_top": 0.49779086892488067,
     "_bottom": 0,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
