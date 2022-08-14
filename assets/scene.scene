@@ -166,7 +166,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 375.24889543446244,
+    "_orthoHeight": 375,
     "_near": 0,
     "_far": 5000,
     "_color": {
@@ -282,7 +282,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "a17c45f5-6d69-4659-9f67-3d7bd8b4810c@f9941",
+      "__uuid__": "fbfd1856-c796-4db3-9d30-30a1a672a6de@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -5644,7 +5644,7 @@
     "_target": null,
     "_left": 0,
     "_right": 1.1368683772161603e-13,
-    "_top": 0.49779086892488067,
+    "_top": 0,
     "_bottom": 0,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
