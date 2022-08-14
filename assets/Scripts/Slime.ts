@@ -69,6 +69,10 @@ export class Slime extends Component {
 
         let myExp = Number(await MaticSlimeContract.GetMyExp());
 
+        if (myExp == 0) {
+            return;
+        }
+
         let lv = Math.floor(myExp / 120)
 
         // TODO : Update Size
