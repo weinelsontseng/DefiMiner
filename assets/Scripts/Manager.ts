@@ -218,8 +218,8 @@ export class Manager extends Component {
 
     Reffer() {
         console.log("Refferal Function")
-
-        let RefUrl = document.URL + "?ref=" + Eth.account
+        const url = new URL(document.URL)
+        let RefUrl = url.origin + url.pathname + "?ref=" + Eth.account
         navigator.clipboard.writeText(RefUrl)
             .then(() => {
                 console.log("Text copied to clipboard...")
