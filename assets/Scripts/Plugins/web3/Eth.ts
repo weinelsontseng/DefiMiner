@@ -42,7 +42,7 @@ export class Eth {
      * @param accounts 
      */
     static async AccountHandler(accounts) {
-        console.log(accounts)
+        //console.log(accounts)
         Eth.account = accounts[0]
 
         RpcInfo.isConnect = true;
@@ -73,10 +73,10 @@ export class Eth {
      * Cookie auto Connect
      */
     static async CheckCookieForAccount() {
-        console.log("Check")
+        //console.log("Check")
         if (localStorage.getItem("account") === null) {
             //Eth.ConnetWallet();
-            console.log("Request Account")
+            //console.log("Request Account")
         } else {
             await Eth.ConnetWallet(Eth.AccountHandler);
             console.log("Loading Account :" + Eth.account)

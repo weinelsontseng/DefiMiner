@@ -33,7 +33,7 @@ export class Manager extends Component {
         Manager.instance = this;
         setDisplayStats(false);
 
-        Eth.EthEvent.on("connected", this.OnConnected)
+
     }
 
     start() {
@@ -47,9 +47,7 @@ export class Manager extends Component {
         }
     }
 
-    OnConnected() {
 
-    }
 
     SetRef() {
         let params = new URLSearchParams(location.search)
@@ -119,12 +117,12 @@ export class Manager extends Component {
     SetSlimeAnimAndSpeed(index: any, speed: number) {
         let c = Center.instance.MonsterSprite.clips[index]
 
-        console.log(index)
-        console.log(speed)
-        console.log(c)
+        //console.log(index)
+        //console.log(speed)
+        //console.log(c)
         //史萊姆速度
         c.speed = speed
-        console.log("speed up")
+        //console.log("speed up")
 
         //史萊姆圖片動畫
         Center.instance.MonsterSprite.defaultClip = c
@@ -217,15 +215,15 @@ export class Manager extends Component {
     }
 
     Reffer() {
-        console.log("Refferal Function")
+        //console.log("Refferal Function")
         const url = new URL(document.URL)
         let RefUrl = url.origin + url.pathname + "?ref=" + Eth.account
         navigator.clipboard.writeText(RefUrl)
             .then(() => {
-                console.log("Text copied to clipboard...")
+                console.log("Text copied to clipboard :" + RefUrl)
             })
             .catch(err => {
-                console.log('Something went wrong', err);
+                console.log('Refferal Url Copy Error', err);
             })
 
         this.PlayButtonSound()

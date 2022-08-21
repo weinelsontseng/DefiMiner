@@ -14,7 +14,7 @@ export class MaticSlimeContract {
 
         let asset = await Utils.loadResSync("config", JsonAsset);
 
-        console.log("Data :" + asset.json)
+        //console.log("Data :" + asset.json)
 
         MaticSlimeContract.Address = asset.json.ContractAddress;
         MaticSlimeContract.ABI = asset.json.ContractABI;
@@ -112,10 +112,10 @@ export class MaticSlimeContract {
     static async GetOneDayMaxCrystalValue() {
         const OneDay = 86400;
         const baseSlime = await MaticSlimeContract.GetMySlimes()
-        console.log("Slime :" + baseSlime)
+        //console.log("Slime :" + baseSlime)
 
         const MaxCrystal = Number(baseSlime) * OneDay
-        console.log("Max Crystal :" + MaxCrystal)
+        //console.log("Max Crystal :" + MaxCrystal)
 
         if (MaxCrystal == 0) {
             return 0

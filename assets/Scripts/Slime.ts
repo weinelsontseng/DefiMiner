@@ -69,7 +69,9 @@ export class Slime extends Component {
 
         let myExp = Number(await MaticSlimeContract.GetMyExp());
 
-        if (myExp == 0) {
+        let mySlime = Number(await MaticSlimeContract.GetMySlimes());
+
+        if (mySlime == 0) {
             return;
         }
 
@@ -100,7 +102,7 @@ export class Slime extends Component {
     // 日利率
     async GetDailyYield() {
         Slime.instance.PlayerInfo = await MaticSlimeContract.GetPlayerInfo()
-        console.log(Slime.instance.PlayerInfo)
+        //console.log(Slime.instance.PlayerInfo)
 
         let InvestValue = Number(Slime.instance.PlayerInfo.InvestValue)
         InvestValue = await RpcInfo.web3.utils.fromWei(InvestValue.toString(), "ether")
@@ -115,7 +117,7 @@ export class Slime extends Component {
 
         } else {
             dailyYield = ((OneDayProfit) / Number(InvestValue) * 100)
-            console.log(dailyYield)
+            //console.log(dailyYield)
         }
         Manager.instance.SetDailyYieldLabel(dailyYield.toPrecision(2) + "%")
     }
