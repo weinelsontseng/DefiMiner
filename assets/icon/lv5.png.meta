@@ -2,7 +2,7 @@
   "ver": "1.0.23",
   "importer": "image",
   "imported": true,
-  "uuid": "d0345c7e-3fda-4f7e-b122-0fcd1d265c97",
+  "uuid": "998f4b45-38c4-4d0e-9582-24d30d47847d",
   "files": [
     ".json",
     ".png"
@@ -10,14 +10,14 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "d0345c7e-3fda-4f7e-b122-0fcd1d265c97@6c48a",
+      "uuid": "998f4b45-38c4-4d0e-9582-24d30d47847d@6c48a",
       "displayName": "lv5",
       "id": "6c48a",
       "name": "texture",
       "userData": {
         "wrapModeS": "clamp-to-edge",
         "wrapModeT": "clamp-to-edge",
-        "imageUuidOrDatabaseUri": "d0345c7e-3fda-4f7e-b122-0fcd1d265c97",
+        "imageUuidOrDatabaseUri": "998f4b45-38c4-4d0e-9582-24d30d47847d",
         "isUuid": true,
         "minfilter": "linear",
         "magfilter": "linear",
@@ -33,7 +33,7 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "d0345c7e-3fda-4f7e-b122-0fcd1d265c97@f9941",
+      "uuid": "998f4b45-38c4-4d0e-9582-24d30d47847d@f9941",
       "displayName": "lv5",
       "id": "f9941",
       "name": "spriteFrame",
@@ -55,7 +55,7 @@
         "borderRight": 0,
         "packable": true,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "d0345c7e-3fda-4f7e-b122-0fcd1d265c97@6c48a",
+        "imageUuidOrDatabaseUri": "998f4b45-38c4-4d0e-9582-24d30d47847d@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.9",
@@ -70,6 +70,6 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
-    "redirect": "d0345c7e-3fda-4f7e-b122-0fcd1d265c97@f9941"
+    "redirect": "998f4b45-38c4-4d0e-9582-24d30d47847d@f9941"
   }
 }

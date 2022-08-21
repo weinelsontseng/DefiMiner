@@ -17,7 +17,8 @@ export class Eth {
         // metamsk
         if ((window as any).ethereum) {
 
-            await RpcInfo.RequestBNB_Testnet(callback);
+            // await RpcInfo.RequestBNB_Testnet(callback);
+            await RpcInfo.RequestMatic_Mainnet(callback);
 
         } else {
             console.log("No Provider")

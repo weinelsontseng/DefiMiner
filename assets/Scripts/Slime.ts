@@ -119,7 +119,8 @@ export class Slime extends Component {
             dailyYield = ((OneDayProfit) / Number(InvestValue) * 100)
             //console.log(dailyYield)
         }
-        Manager.instance.SetDailyYieldLabel(dailyYield.toPrecision(2) + "%")
+
+        Manager.instance.SetDailyYieldLabel(dailyYield.toFixed(5) + "%")
     }
 }
 

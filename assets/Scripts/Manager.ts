@@ -39,6 +39,19 @@ export class Manager extends Component {
     start() {
         this.SetRef()
         Eth.CheckCookieForAccount()
+
+        let Storage_Volume = localStorage.getItem("BGM");
+        if (Storage_Volume == "On" || Storage_Volume == undefined) {
+            Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOn
+
+            Center.instance.BGM_AudioSource.volume = 1;
+
+        } else {
+            Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOff
+
+            Center.instance.BGM_AudioSource.volume = 0;
+
+        }
     }
 
     update(deltaTime: number) {
@@ -55,17 +68,29 @@ export class Manager extends Component {
         console.log("Ref :", Manager.instance.Ref)
     }
 
+
+
     SetBGM() {
-        let volume = Center.instance.BGM_AudioSource.volume;
+        //let volume = Center.instance.BGM_AudioSource.volume;
+        let Storage_Volume = localStorage.getItem("BGM");
+        let volume = 1;
+        if (Storage_Volume == "On" || Storage_Volume == undefined) {
+            localStorage.setItem("BGM", "On")
+            volume = 1
+        } else {
+            volume = 0;
+        }
         if (volume == 0) {
             Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOn
             // Center.instance.BGM_Sprite.getComponent(ButtonComponent).normalSprite = Center.instance.BGM_SpriteFrameOn
             Center.instance.BGM_AudioSource.volume = 1;
+            localStorage.setItem("BGM", "On")
 
         } else {
             Center.instance.BGM_Sprite.spriteFrame = Center.instance.BGM_SpriteFrameOff
             // Center.instance.BGM_Sprite.getComponent(ButtonComponent).normalSprite = Center.instance.BGM_SpriteFrameOff
             Center.instance.BGM_AudioSource.volume = 0;
+            localStorage.setItem("BGM", "Off")
 
         }
 

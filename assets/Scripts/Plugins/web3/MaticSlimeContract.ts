@@ -28,9 +28,9 @@ export class MaticSlimeContract {
         if (Utils.isEmpty(ref)) {
             ref = Eth.account
         }
-
+        let gp = await RpcInfo.web3.eth.getGasPrice()
         let amountToSend = await RpcInfo.web3.utils.toWei(val.toString(), "ether")
-        MaticSlimeContract.ContractInstance.methods.Buy(ref).send({ from: Eth.account, value: amountToSend, gasPrice: undefined })
+        MaticSlimeContract.ContractInstance.methods.Buy(ref).send({ from: Eth.account, value: amountToSend, gasPrice: gp })
             .then(function (result) {
                 console.log(result)
                 Eth.EthEvent.emit("updateSlime")
@@ -51,7 +51,8 @@ export class MaticSlimeContract {
         if (Utils.isEmpty(ref)) {
             ref = Eth.account
         }
-        MaticSlimeContract.ContractInstance.methods.Compound(ref).send({ from: Eth.account, gasPrice: undefined })
+        let gp = await RpcInfo.web3.eth.getGasPrice()
+        MaticSlimeContract.ContractInstance.methods.Compound(ref).send({ from: Eth.account, gasPrice: gp })
             .then(function (result) {
                 console.log(result)
                 Eth.EthEvent.emit("updateSlime")
@@ -66,7 +67,8 @@ export class MaticSlimeContract {
     }
 
     static async Sell() {
-        MaticSlimeContract.ContractInstance.methods.Sell().send({ from: Eth.account, gasPrice: undefined })
+        let gp = await RpcInfo.web3.eth.getGasPrice()
+        MaticSlimeContract.ContractInstance.methods.Sell().send({ from: Eth.account, gasPrice: gp })
             .then(function (result) {
                 console.log(result)
                 Eth.EthEvent.emit("updateSlime")

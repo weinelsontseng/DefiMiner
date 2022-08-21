@@ -51,6 +51,50 @@ export class RpcInfo {
 
     }
 
+    /**
+    * 新增 BNB Testnet & 獲得錢包地址 array
+    * @param callBack Handle Account
+    */
+    static async RequestMatic_Mainnet(callBack) {
+        // BNB Testnet
+        (window as any).ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [{
+                chainId: '0x89',
+                chainName: 'Matic Mainnet RPC',
+                nativeCurrency: {
+                    name: 'MATIC Coin',
+                    symbol: 'MATIC',
+                    decimals: 18
+                },
+                rpcUrls: ['https://polygon-rpc.com'],
+                blockExplorerUrls: ['https://polygonscan.com/'],
+
+            }]
+        }).then(async () => {
+            // connect popup
+            RpcInfo.web3 = new Web3((window as any).ethereum);
+            let chainId = await RpcInfo.web3.eth.getChainId()
+            if (chainId != 137) {
+                console.log("Chain Error")
+            } else {
+                RpcInfo.RequestAccounts(callBack)
+            }
+
+        })
+            .catch((error) => {
+                console.log(error);
+            });
+
+
+
+
+
+        //console.log(accounts);
+        //this.account = accounts[0];
+
+    }
+
     static RequestAccounts(callBack) {
         (window as any).ethereum.request({
             method: 'eth_requestAccounts',
